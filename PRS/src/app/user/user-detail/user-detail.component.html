@@ -1,0 +1,42 @@
+<app-menu></app-menu>
+
+<table id="detail" class="table table-sm" *ngIf="user">
+        <tr>
+            <th>Id</th>
+            <td>{{user.id}}</td>
+        </tr>
+        <tr>
+            <th>Username</th>
+            <td>{{user.username}}</td>
+        </tr>
+        <tr>
+            <th>First Name</th>
+            <td>{{user.firstname}}</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>{{user.lastname}}</td>
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td>{{user.phone}}</td>
+        </tr>
+        <tr>
+            <th>Email Address</th>
+            <td>{{user.email}}</td>
+        </tr>
+        <tr>
+            <th>Is National</th>
+            <td>{{user.isReviewer ? "Yes" : "No"}}</td>
+        </tr>
+        <tr>
+            <th>Is National</th>
+            <td>{{user.isAdmin ? "Yes" : "No"}}</td>
+        </tr>
+</table>
+<button (click)="return()" class="btn btn-primary btn-sm" *ngIf="!delVerify">Return</button>
+<button (click)="return()" class="btn btn-primary btn-sm" *ngIf="delVerify" disabled>Really?</button> | 
+<button (click)="verify()" class="btn btn-danger btn-sm" *ngIf="!delVerify">Delete</button>
+<button (click)="verify()" class="btn btn-info btn-sm" *ngIf="delVerify">Nevermind</button>
+<span *ngIf="delVerify"> | </span>
+<button (click)="delete()" class="btn btn-danger btn-sm" *ngIf="delVerify">Confirm</button>

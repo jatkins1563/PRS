@@ -1,0 +1,45 @@
+<app-menu></app-menu>
+<div id="component">
+    <div id="component-header">
+        <a routerLink="/user/create">Create</a>
+        | <input [(ngModel)]="searchCriteria" type="text" placeholder="Search">
+    </div>
+    <div id="component-content">
+        <table class="table table-stripped">
+            <thead>
+            <tr>
+                <th><a (click)="sortFn('id')" class="btn btn-link">Id</a></th>
+                <th><a (click)="sortFn('name')" class="btn btn-link">Username</a></th>
+                <th><a (click)="sortFn('name')" class="btn btn-link">First Name</a></th>
+                <th><a (click)="sortFn('name')" class="btn btn-link">Last Name</a></th>
+                <th><a (click)="sortFn('name')" class="btn btn-link">Phone</a></th>
+                <th><a (click)="sortFn('name')" class="btn btn-link">Email</a></th>
+                <th><a (click)="sortFn('name')" class="btn btn-link">Reviewer?</a></th>
+                <th><a (click)="sortFn('name')" class="btn btn-link">Admin?</a></th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let u of users | userSearch:searchCriteria | sort:sortColumn:sortAsc">
+                <td>{{u.id}}</td>
+                <td>{{u.username}}</td>
+                <td>{{u.firstname}}</td>
+                <td>{{u.lastname}}</td>
+                <td>{{u.phone}}</td>
+                <td>{{u.email}}</td>
+                <td>{{u.isReviewer ? "Yes" : "No"}}</td>
+                <td>{{u.isAdmin ? "Yes" : "No"}}</td>
+                <td>
+                    <span>
+                        <a routerLink="/user/detail/{{u.id}}">Detail</a>
+                    </span>
+                    <span> | </span>
+                    <span>
+                        <a routerLink="/user/edit/{{u.id}}">Edit</a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>
