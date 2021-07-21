@@ -5,3 +5,9 @@
 #detail {
     width: 30%;
 }
+thead {
+    text-align: center;
+}
+td {
+    text-align: center;
+}

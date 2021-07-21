@@ -27,6 +27,10 @@ export class UserCreateComponent implements OnInit {
         err => { console.debug(err); }
       )
     }
+    //cancel/return to list
+    return(): void {
+      this.router.navigateByUrl("/user/list");
+    }
 
   ngOnInit(): void {
     this.usersvc.list().subscribe(

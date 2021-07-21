@@ -1,1 +1,37 @@
-<p>product-edit works!</p>
+<div>
+    <table class="table table-sm">
+        <tr>
+            <td>Id</td>
+            <td><input [(ngModel)]="product.id" type="number" placeholder="{{product.id}}" disabled></td>
+        </tr>
+        <tr>
+            <td>Part Number</td>
+            <td><input [(ngModel)]="product.partNbr" type="text"></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td><input [(ngModel)]="product.name" type="text"></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td><input [(ngModel)]="product.price" type="text"></td>
+        </tr>
+        <tr>
+            <td>Unit</td>
+            <td><input [(ngModel)]="product.unit" type="text"></td>
+        </tr>
+        <tr>
+            <td>Photo Path</td>
+            <td><input [(ngModel)]="product.photoPath" type="text"></td>
+        </tr>
+        <tr>
+            <td>Vendor Name</td>
+            <td>
+                <select id="vendorList" [(ngModel)]="product.vendorId">
+                  </select>
+            </td>
+        </tr>
+    </table>
+    <button (click)="save()" class="btn btn-primary">Save</button>
+    <button (click)="return()" class="btn btn">Cancel</button>
+</div>

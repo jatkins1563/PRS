@@ -1,1 +1,47 @@
-<p>vendor-list works!</p>
+<app-menu></app-menu>
+<div id="component">
+    <div id="component-header">
+        <a routerLink="/vendor/create">Create</a>
+        | <input [(ngModel)]="searchCriteria" type="text" placeholder="Search">
+    </div>
+    <div id="component-content">
+        <table class="table table-stripped">
+            <thead>
+            <tr>
+                <th><a (click)="sortFn('id')" class="btn btn-link">Id</a></th>
+                <th><a (click)="sortFn('code')" class="btn btn-link">Code</a></th>
+                <th><a (click)="sortFn('name')" class="btn btn-link">Name</a></th>
+                <th><a (click)="sortFn('address')" class="btn btn-link">Address</a></th>
+                <th><a (click)="sortFn('city')" class="btn btn-link">City</a></th>
+                <th><a (click)="sortFn('state')" class="btn btn-link">State</a></th>
+                <th><a (click)="sortFn('zip')" class="btn btn-link">Zip</a></th>
+                <th><a (click)="sortFn('phone')" class="btn btn-link">Phone</a></th>
+                <th><a (click)="sortFn('email')" class="btn btn-link">Email</a></th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let v of vendors | vendorSearch:searchCriteria | sort:sortColumn:sortAsc">
+                <td>{{v.id}}</td>
+                <td>{{v.code}}</td>
+                <td>{{v.name}}</td>
+                <td>{{v.address}}</td>
+                <td>{{v.city}}</td>
+                <td>{{v.state}}</td>
+                <td>{{v.zip}}</td>
+                <td>{{v.phone}}</td>
+                <td>{{v.email}}</td>
+                <td>
+                    <span>
+                        <a routerLink="/vendor/detail/{{v.id}}">Detail</a>
+                    </span>
+                    <span> | </span>
+                    <span>
+                        <a routerLink="/vendor/edit/{{v.id}}">Edit</a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>

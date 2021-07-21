@@ -1,1 +1,45 @@
-<p>product-list works!</p>
+<app-menu></app-menu>
+<div id="component">
+    <div id="component-header">
+        <a routerLink="/product/create">Create</a>
+        | <input [(ngModel)]="searchCriteria" type="text" placeholder="Search">
+    </div>
+    <div id="component-content">
+        <table class="table table-stripped">
+            <thead>
+            <tr>
+                <th><a (click)="sortFn('id')" class="btn btn-link">Id</a></th>
+                <th><a (click)="sortFn('partNbr')" class="btn btn-link">Part Number</a></th>
+                <th><a (click)="sortFn('name')" class="btn btn-link">Name</a></th>
+                <th><a (click)="sortFn('price')" class="btn btn-link">Price</a></th>
+                <th><a (click)="sortFn('unit')" class="btn btn-link">Unit</a></th>
+                <th><a (click)="sortFn('photoPath')" class="btn btn-link">Photopath</a></th>
+                <th><a (click)="sortFn('vendor.name')" class="btn btn-link">Vendor Name</a></th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of products | productSearch:searchCriteria | sort:sortColumn:sortAsc">
+                <td>{{p.id}}</td>
+                <td>{{p.partNbr}}</td>
+                <td>{{p.name}}</td>
+                <td>{{p.price}}00 Gold</td>
+                <td>{{p.unit}}</td>
+                <td>{{p.photoPath}}</td>
+                <td>
+                    <div *ngIf="p.vendor">{{p.vendor.name}}</div>
+                </td>
+                <td>
+                    <span>
+                        <a routerLink="/product/detail/{{p.id}}">Detail</a>
+                    </span>
+                    <span> | </span>
+                    <span>
+                        <a routerLink="/product/edit/{{p.id}}">Edit</a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+</div>

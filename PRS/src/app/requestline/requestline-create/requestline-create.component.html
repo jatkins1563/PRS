@@ -1,0 +1,17 @@
+<div>
+    <table class="table table-sm">
+        <tr>
+            <td>Product</td>
+            <td>
+                <select id="productList" [(ngModel)]="requestLine.productId">
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Quantity</td>
+            <td><input [(ngModel)]="requestLine.quantity" type="number"></td>
+        </tr>
+    </table>
+    <button (click)="save()" class="btn btn-primary">Save</button>
+    <button (click)="return()" class="btn btn-sm">Cancel</button>
+</div>
