@@ -1,9 +1,7 @@
 <app-menu></app-menu>
 <div id="component">
     <div id="component-header">
-        <a routerLink="/request/create">Create</a>
-         | <button (click)="review()" class="btn btn-link">Review</button>
-        | <input [(ngModel)]="searchCriteria" type="text" placeholder="Search">
+        <input [(ngModel)]="searchCriteria" type="text" placeholder="Search">
     </div>
     <div id="component-content">
         <table class="table table-stripped">
@@ -26,13 +24,7 @@
                 <td *ngIf="r.user">{{r.user.username}}</td>
                 <td>
                     <span>
-                        <a routerLink="/request/detail/{{r.id}}">Detail</a> | 
-                    </span>
-                    <span>
-                        <a routerLink="/request/edit/{{r.id}}">Edit</a> |
-                    </span>
-                    <span>
-                        <a routerLink="/request/lines/{{r.id}}">Lines</a>
+                        <button (click)="review(r.id)" class="btn btn-link">Review</button>
                     </span>
                 </td>
             </tr>

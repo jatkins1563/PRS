@@ -10,4 +10,6 @@ export class RequestLine {
         
     productId: number = 0;
     product: Product | null = null;
+
+    lineTotal: number = 0;
 }

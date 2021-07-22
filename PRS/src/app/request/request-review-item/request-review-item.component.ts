@@ -8,16 +8,17 @@ import { SystemService } from 'src/app/core/system.service';
 import { User } from 'src/app/user/user.class';
 
 @Component({
-  selector: 'app-request-lines',
-  templateUrl: './request-lines.component.html',
-  styleUrls: ['./request-lines.component.css']
+  selector: 'app-request-review-item',
+  templateUrl: './request-review-item.component.html',
+  styleUrls: ['./request-review-item.component.css']
 })
-export class RequestLinesComponent implements OnInit {
-
+export class RequestReviewItemComponent implements OnInit {
   request: Request = new Request;
   loggedInUser: User = new User;
   requestLines: RequestLine[] | null = [];
   products: Product[] = [];
+  rejVerify: boolean = false;
+  rejReason: boolean = false;
 
   searchCriteria: string = "";
   sortColumn: string = "id";
@@ -43,7 +44,7 @@ export class RequestLinesComponent implements OnInit {
   ngOnInit(): void {
     //pull request from URL
     const routeParams = this.activatedRoute.snapshot.paramMap;
-    const id = Number(routeParams.get('id'));
+    const id = Number(routeParams.get('reqId'));
     this.requestsvc.get(id).subscribe(
       res => {console.debug("request: ", res);
       this.request = res;},
@@ -60,14 +61,39 @@ export class RequestLinesComponent implements OnInit {
     this.loggedInUser = this.syssvc.getLoggedInUser();
   }
 
-  review(): void {
-    this.requestsvc.review(this.request).subscribe(
-      res => { console.debug("Review Successful!"); this.router.navigateByUrl("/request/list")},
+  create(): void {
+    this.router.navigateByUrl(`/requestline/create/${this.request.id}`)
+  }
+  
+  verify(): void {
+    this.rejVerify = !this.rejVerify;
+    if(this.rejReason) {
+      this.rejReason = false;
+    }
+  }
+
+  rejectFail(): void {
+    this.rejReason = true;
+  }
+
+  approve(): void {
+    this.requestsvc.approve(this.request).subscribe(
+      res => { console.debug("Approve Successful!", res); this.router.navigateByUrl(`/request/review/${this.loggedInUser.id}`)},
       err => { console.debug(err); }
     )
   }
 
-  create(): void {
-    this.router.navigateByUrl(`/requestline/create/${this.request.id}`)
+  reject(): void {
+    if(this.request.rejectionReason == "" || this.request.rejectionReason == null) {
+      this.rejectFail();
+      return;
+    }
+    this.requestsvc.reject(this.request).subscribe(
+      res => { console.debug("Reject Successful!", res); this.router.navigateByUrl(`/request/review/${this.loggedInUser.id}`)},
+      err => { 
+        console.debug("request: ", this.request);
+        console.debug(err);
+      }
+    )
   }
 }

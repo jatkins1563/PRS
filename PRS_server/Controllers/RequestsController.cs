@@ -46,12 +46,12 @@ namespace PRS_server.Controllers
             return request;
         }
 
-        // GET: api/Requests/review/5
-        [HttpGet("review/{id}")]
-        public async Task<ActionResult<IEnumerable<Request>>> GetReviews(int id)
+        // GET: api/Requests/1/review
+        [HttpGet("{userId}/review")]
+        public async Task<ActionResult<IEnumerable<Request>>> GetReviews(int userId)
         {
             var request = await _context.Requests
-                .Where(r => r.UserId != id)
+                .Where(r => r.UserId != userId && r.Status == "REVIEW")
                 .ToListAsync();
 
             if (request == null)
@@ -92,9 +92,9 @@ namespace PRS_server.Controllers
             return NoContent();
         }
 
-        // PUT: api/Requests/5/review
-        [HttpPut("{id}/review")]
-        public async Task<IActionResult> Review(int id)
+        // PUT: api/Requests/1/review/5
+        [HttpPut("{userId}/review/{id}")]
+        public async Task<IActionResult> Review(int id, int userId)
         {
             var request = await _context.Requests.FindAsync(id);
             if (id != request.Id)
@@ -102,7 +102,7 @@ namespace PRS_server.Controllers
                 return BadRequest();
             }
 
-            if(request.Total <= 0)
+            if (request.Total <= 0)
             {
                 throw new ArgumentOutOfRangeException("Total must be greater than zero to review!");
             }
@@ -137,13 +137,19 @@ namespace PRS_server.Controllers
         }
 
         // PUT: api/Requests/5/approve
-        [HttpPut("{id}/approve")]
-        public async Task<IActionResult> Approve(int id, Request request)
+        [HttpPut("{userId}/approve/{id}")]
+        public async Task<IActionResult> Approve(int id, int userId, Request request)
         {
             if (id != request.Id)
             {
                 return BadRequest();
             }
+
+/*            var loggedInUser = await _context.Users.FindAsync(userId);
+            if (!loggedInUser.IsReviewer)
+            {
+                return BadRequest("Logged in User is not a Reviewer!");
+            }*/
 
             request.Status = request.Approved;
 
@@ -169,15 +175,23 @@ namespace PRS_server.Controllers
         }
 
         // PUT: api/Requests/5/reject
-        [HttpPut("{id}/reject")]
-        public async Task<IActionResult> Reject(int id, Request request)
+        [HttpPut("{userId}/reject/{id}")]
+        public async Task<IActionResult> Reject(int id, int userId, Request request)
         {
             if (id != request.Id)
             {
                 return BadRequest();
             }
 
-            if(request.RejectionReason == null)
+            var loggedInUser = await _context.Users.FindAsync(userId);
+            Console.WriteLine("logged in user: ", loggedInUser);
+            Console.WriteLine("request: ", request);
+/*            if (!loggedInUser.IsReviewer)
+            {
+                return BadRequest("Logged in User is not a Reviewer!");
+            }*/
+
+            if (request.RejectionReason == null || request.RejectionReason == "")
             {
                 throw new Exception("Rejection failed. Reason required to set \"REJECTED\" status.");
             }

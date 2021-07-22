@@ -19,6 +19,9 @@ export class UserService {
   get(id: number): Observable<User> {
     return this.http.get(`${this.baseurl}/${id}`) as Observable<User>;
   }
+  login(username: string, password: string): Observable<User> {
+    return this.http.get(`${this.baseurl}/${username}/${password}`) as Observable<User>;
+  }
   create(user: User): Observable<User> {
     return this.http.post(`${this.baseurl}`, user) as Observable<User>;
   }

@@ -11,3 +11,9 @@ thead {
 td {
     text-align: center;
 }
+table {
+    width: 70%;
+}
+#wide {
+    width: 70%;
+}

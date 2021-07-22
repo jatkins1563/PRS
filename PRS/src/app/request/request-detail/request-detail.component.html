@@ -1,1 +1,42 @@
-<p>request-detail works!</p>
+<app-menu></app-menu>
+
+<table id="detail" class="table table-sm" *ngIf="request">
+        <tr>
+            <th>Id</th>
+            <td>{{request.id}}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{request.description}}</td>
+        </tr>
+        <tr>
+            <th>Justification</th>
+            <td>{{request.justification}}</td>
+        </tr>
+        <tr>
+            <th>Rejection Reason</th>
+            <td>{{request.rejectionReason}}</td>
+        </tr>
+        <tr>
+            <th>Delivery Mode</th>
+            <td>{{request.deliveryMode}}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{request.status}}</td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <td>{{request.total}}</td>
+        </tr>
+        <tr>
+            <th>User ID</th>
+            <td>{{request.userId}}</td>
+        </tr>
+</table>
+<button (click)="return()" class="btn btn-primary btn-sm" *ngIf="!delVerify">Return</button>
+<button (click)="return()" class="btn btn-primary btn-sm" *ngIf="delVerify" disabled>Really?</button> | 
+<button (click)="verify()" class="btn btn-danger btn-sm" *ngIf="!delVerify">Delete</button>
+<button (click)="verify()" class="btn btn-info btn-sm" *ngIf="delVerify">Nevermind</button>
+<span *ngIf="delVerify"> | </span>
+<button (click)="delete()" class="btn btn-danger btn-sm" *ngIf="delVerify">Confirm</button>

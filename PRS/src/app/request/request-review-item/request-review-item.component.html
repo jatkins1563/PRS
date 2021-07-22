@@ -1,11 +1,10 @@
 <app-menu></app-menu>
 <div id="component">
     <div id="component-header">
-        <button (click)="create()" class="btn btn-link">Create</button> | 
-        <a routerLink="/request/list">Return</a>
+        <h3>Review Request Item</h3>
     </div>
     <div id="component-content">
-        <table class="table table-stripped">
+        <table id="wide" class="table table-stripped">
             <thead>
             <tr>
                 <th>Id</th>
@@ -13,7 +12,6 @@
                 <th>Status</th>
                 <th>Total</th>
                 <th>User</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,15 +21,10 @@
                 <td>{{request.status}}</td>
                 <td>{{request.total * 100}} Gold</td>
                 <td *ngIf="request.user">{{request.user.username}}</td>
-                <td>
-                    <span *ngIf="request.status != 'REVIEW'">
-                        <button (click)="review()" class="btn btn-link">Review</button>
-                    </span>
-                </td>
             </tr>
         </tbody>
         </table>
-        <table class="table table-stripped">
+        <table id="wide" class="table table-stripped">
             <thead>
             <tr>
                 <th>ID</th>
@@ -39,7 +32,6 @@
                 <th>Quantity</th>
                 <th>Price</th>
                 <th>Line Total</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -49,16 +41,20 @@
                 <td>{{rl.quantity}}</td>
                 <td *ngIf="rl.product">{{rl.product.price}}00 Gold</td>
                 <td>{{rl.lineTotal}}00 Gold</td>
-                <td>
-                    <span>
-                        <a routerLink="/requestline/{{request.id}}/edit/{{rl.id}}">Edit</a> |
-                    </span>
-                    <span>
-                        <a routerLink="/requestline/delete/{{rl.id}}">Delete</a>
-                    </span>
-                </td>
             </tr>
         </tbody>
         </table>
+    </div>
+    <div id="component-footer">
+        <button (click)="approve()" class="btn btn-primary btn-sm" *ngIf="!rejVerify">Approve</button>
+        <button (click)="approve()" class="btn btn-primary btn-sm" *ngIf="rejVerify" disabled>Why?</button> | 
+        <button (click)="verify()" class="btn btn-danger btn-sm" *ngIf="!rejVerify">Reject</button>
+        <button (click)="verify()" class="btn btn-info btn-sm" *ngIf="rejVerify">Nevermind</button>
+        <span *ngIf="rejVerify"> | </span>
+        <button (click)="reject()" class="btn btn-danger btn-sm" *ngIf="rejVerify">Confirm</button>
+        <br *ngIf="rejVerify">
+        <span *ngIf="rejReason">Reason required for rejection!</span>
+        <br *ngIf="rejVerify">
+        <input *ngIf="rejVerify" [(ngModel)]="request.rejectionReason" type="text" placeholder="Enter a rejection reason...">
     </div>
 </div>

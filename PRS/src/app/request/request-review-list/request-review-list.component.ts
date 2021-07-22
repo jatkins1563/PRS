@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SystemService } from 'src/app/core/system.service';
 import { User } from 'src/app/user/user.class';
 import { UserService } from 'src/app/user/user.service';
@@ -7,11 +7,11 @@ import { Request } from '../request.class';
 import { RequestService } from '../request.service';
 
 @Component({
-  selector: 'app-request-list',
-  templateUrl: './request-list.component.html',
-  styleUrls: ['./request-list.component.css']
+  selector: 'app-request-review-list',
+  templateUrl: './request-review-list.component.html',
+  styleUrls: ['./request-review-list.component.css']
 })
-export class RequestListComponent implements OnInit {
+export class RequestReviewListComponent implements OnInit {
 
   requests: Request[] = [];
   users: User[] = [];
@@ -31,15 +31,18 @@ export class RequestListComponent implements OnInit {
   }
 
   constructor(
-    private syssvc: SystemService,
     private requestsvc: RequestService,
     private usersvc: UserService,
+    private syssvc: SystemService,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.requestsvc.list().subscribe(
-      res => { console.debug("Requests", res);
+    const routeParams = this.activatedRoute.snapshot.paramMap;
+    const id = Number(routeParams.get('id'));
+    this.requestsvc.getReviews(this.syssvc.loggedInUser).subscribe(
+      res => { console.debug("Logged in User: ", this.syssvc.loggedInUser, "Requests", res);
       this.requests = res;
    },
       err => { console.error(err); },
@@ -56,7 +59,7 @@ export class RequestListComponent implements OnInit {
       );
     }
   }
-  review(): void {
-    this.router.navigateByUrl(`/request/review/${this.syssvc.loggedInUser.id}`);
+  review(reqId: string): void {
+    this.router.navigateByUrl(`/request/review/${this.syssvc.loggedInUser.id}/item/${reqId}`);
   }
 }

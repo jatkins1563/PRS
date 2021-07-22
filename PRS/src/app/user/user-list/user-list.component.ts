@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SystemService } from 'src/app/core/system.service';
 import { User } from '../user.class';
 import { UserService } from '../user.service';
 
@@ -26,10 +27,13 @@ export class UserListComponent implements OnInit {
   }
 
   constructor(
-    private usersvc: UserService
+    private usersvc: UserService,
+    private syssvc: SystemService
   ) { }
 
   ngOnInit(): void {
+    let printUser = this.syssvc.getLoggedInUser();
+    console.debug("user: ", printUser);
     this.usersvc.list().subscribe(
       res => { console.debug("Users", res);
       this.users = res;

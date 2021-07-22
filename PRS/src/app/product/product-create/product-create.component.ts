@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/product/product.class';
 import { ProductService } from 'src/app/product/product.service';
-import { SystemService } from 'src/app/core/system.service';
 import { VendorService } from 'src/app/vendor/vendor.service';
 import { Vendor } from 'src/app/vendor/vendor.class';
 
@@ -17,7 +16,6 @@ export class ProductCreateComponent implements OnInit {
   vendors: Vendor[] = [];
 
   constructor(
-    private syssvc: SystemService,
     private productsvc: ProductService,
     private vendorsvc: VendorService,
     private router: Router

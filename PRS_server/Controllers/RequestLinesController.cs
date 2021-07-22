@@ -112,15 +112,16 @@ namespace PRS_server.Controllers
             return NoContent();
         }
 
-        // POST: api/RequestLines
-        [HttpPost]
-        public async Task<ActionResult<RequestLine>> PostRequestLine(RequestLine requestLine)
+        // POST: api/RequestLines/9
+        [HttpPost("{id}")]
+        public async Task<ActionResult<RequestLine>> PostRequestLine(int id, RequestLine requestLine)
         {
             //checks for invalid quantity
             if (requestLine.Quantity <= 0)
             {
                 throw new ArgumentOutOfRangeException("Quantity must be greater than 0.");
             }
+            requestLine.RequestId = id;
 
             _context.RequestLines.Add(requestLine);
 
