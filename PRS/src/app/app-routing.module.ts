@@ -56,7 +56,7 @@ const routes: Routes = [
   { path: 'request/detail/:id', component: RequestDetailComponent },
   { path: 'request/create', component: RequestCreateComponent },
   { path: 'request/edit/:id', component: RequestEditComponent },
-  { path: 'request/lines/:id', component: RequestLinesComponent },
+  { path: 'request/lines/:id', component: RequestLinesComponent, runGuardsAndResolvers: 'always' },
   { path: 'request/review/:id', component: RequestReviewListComponent },
   { path: 'request/review/:id/item/:reqId', component: RequestReviewItemComponent },
 
@@ -67,7 +67,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

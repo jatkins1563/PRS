@@ -51,20 +51,19 @@ export class RequestLineCreateComponent implements OnInit {
       res => { console.debug("Products", res);
       this.products = res;
       },
-      err => { console.error(err); },
-      () => 
-      //generates dropdown list
-      this.products.forEach((product) => {
-        
-        var element = document.createElement("option");
-        var list = document.getElementById("productList");
-        element.innerHTML = product.name;
-        element.id = `product${product.id}`;
-        element.value = `${product.id}`;
-        console.debug(`element: ${element.value} productid: ${product.id}`)
-        list!.append(element);
-      })
-      
+      err => { console.error(err); } //,
+      // () => 
+      // // generates dropdown list
+      //   {
+      //   var element = document.createElement("option");
+      //   var list = document.getElementById("productList");
+      //   element.innerHTML = "Select Item";
+      //   element.id = "product-1";
+      //   element.value = "";
+      //   element.setAttribute("selected", "");
+      //   console.debug(`element: ${element.value} productid: ${element.id}`)
+      //   list!.appendChild(element);
+      //   }
       );
   }
 }

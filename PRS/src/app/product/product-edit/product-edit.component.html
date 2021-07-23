@@ -1,28 +1,33 @@
+<app-menu></app-menu>
+<br>
+<div id="detail">
+<h3>Edit Product</h3>
+<br>
 <div>
     <table class="table table-sm">
         <tr>
             <td>Id</td>
-            <td><input [(ngModel)]="product.id" type="number" placeholder="{{product.id}}" disabled></td>
+            <td><input [(ngModel)]="product.id" type="number" placeholder="{{product.id}}" style="width: 200px;" disabled></td>
         </tr>
         <tr>
             <td>Part Number</td>
-            <td><input [(ngModel)]="product.partNbr" type="text"></td>
+            <td><input [(ngModel)]="product.partNbr" type="text" style="width: 200px;"></td>
         </tr>
         <tr>
             <td>Name</td>
-            <td><input [(ngModel)]="product.name" type="text"></td>
+            <td><input [(ngModel)]="product.name" type="text" style="width: 200px;"></td>
         </tr>
         <tr>
             <td>Price</td>
-            <td><input [(ngModel)]="product.price" type="text"></td>
+            <td><input [(ngModel)]="product.price" type="text" style="width: 200px;"></td>
         </tr>
         <tr>
             <td>Unit</td>
-            <td><input [(ngModel)]="product.unit" type="text"></td>
+            <td><input [(ngModel)]="product.unit" type="text" style="width: 200px;"></td>
         </tr>
         <tr>
             <td>Photo Path</td>
-            <td><input [(ngModel)]="product.photoPath" type="text"></td>
+            <td><input [(ngModel)]="product.photoPath" type="text" style="width: 200px;"></td>
         </tr>
         <tr>
             <td>Vendor Name</td>

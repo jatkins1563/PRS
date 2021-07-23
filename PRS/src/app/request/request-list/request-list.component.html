@@ -1,4 +1,6 @@
 <app-menu></app-menu>
+<br>
+<h2 style="text-indent: 20pt;">Requests</h2>
 <div id="component">
     <div id="component-header">
         <a routerLink="/request/create">Create</a>
@@ -6,7 +8,7 @@
         | <input [(ngModel)]="searchCriteria" type="text" placeholder="Search">
     </div>
     <div id="component-content">
-        <table class="table table-stripped">
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th><a (click)="sortFn('id')" class="btn btn-link">Id</a></th>

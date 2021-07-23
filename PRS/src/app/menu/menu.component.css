@@ -1,3 +1,24 @@
 #menu {
     display: inline;
+    font-family: 'Times New Roman', Times, serif !important;
+}
+nav {
+    background-color: #4b006e;
+    padding: 5px 0px 7px 0px;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+li {
+    display: inline-block;
+}
+a {
+    padding: 10px;
+    text-decoration: none;
+    color: goldenrod;
+}
+a:hover {
+    color: gold;
+    background-color: #2a003b;
 }

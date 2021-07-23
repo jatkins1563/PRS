@@ -15,7 +15,7 @@ menus: Menu[] = [
   new Menu("Vendors", "/vendor/list"),
   new Menu("Products", "/product/list"),
   new Menu("Requests", "/request/list"),
-  new Menu("Logout", "/login")
+  new Menu("Login", "/login")
 ];
 
   constructor() { }

@@ -4,6 +4,10 @@
 }
 #detail {
     width: 30%;
+    padding-left: 15pt;
+}
+h2 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 thead {
     text-align: center;
@@ -13,7 +17,11 @@ td {
 }
 table {
     width: 70%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 #wide {
     width: 70%;
+}
+.btn-link {
+    padding: 0px 0px 5px 0px;
 }

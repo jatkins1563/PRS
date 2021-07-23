@@ -1,6 +1,8 @@
 <app-menu></app-menu>
-
-<table id="detail" class="table table-sm" *ngIf="user">
+<br>
+<div id="detail">
+<h3>User Details</h3>
+<table class="table table-sm" *ngIf="user">
         <tr>
             <th>Id</th>
             <td>{{user.id}}</td>
@@ -40,3 +42,4 @@
 <button (click)="verify()" class="btn btn-info btn-sm" *ngIf="delVerify">Nevermind</button>
 <span *ngIf="delVerify"> | </span>
 <button (click)="delete()" class="btn btn-danger btn-sm" *ngIf="delVerify">Confirm</button>
+</div>

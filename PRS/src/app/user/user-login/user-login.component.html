@@ -1,12 +1,19 @@
-<div>Login:</div>
+<div id="login">
+<div>
+    <h3>Login:</h3>
+</div>
+<br>
 <div>
     <input id="username" type="text" placeholder="Username">
     <br>
     <input id="password" type="password" placeholder="Password">
 </div>
+<br>
+<button (click)="login()" class="btn btn-primary btn-sm">Login</button>
 <div id="badCred" *ngIf="badCredentials">
-    <span>
+    <span style="color: red;">
         Incorrect Login!
     </span>
 </div>
-<button (click)="login()" class="btn btn-primary btn-sm">Login</button>
+<br *ngIf="badCredentials">
+</div>

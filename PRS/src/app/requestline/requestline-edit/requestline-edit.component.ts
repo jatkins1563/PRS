@@ -59,7 +59,7 @@ export class RequestLineEditComponent implements OnInit {
     save(): void {
       console.debug("B4:", this.requestLine);
       this.requestLinesvc.change(this.requestLine).subscribe(
-        res => { console.debug("Edit Successful!"); this.router.navigateByUrl("request/request-lines")},
+        res => { console.debug("Edit Successful!"); this.router.navigateByUrl(`request/lines/${this.reqId}`)},
         err => { console.debug(err); }
       )
     }

@@ -1,11 +1,13 @@
 <app-menu></app-menu>
+<br>
+<h2 style="text-indent: 20pt;">Requestline Details</h2>
 <div id="component">
     <div id="component-header">
         <button (click)="create()" class="btn btn-link">Create</button> | 
         <a routerLink="/request/list">Return</a>
     </div>
     <div id="component-content">
-        <table class="table table-stripped">
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th>Id</th>
@@ -13,7 +15,7 @@
                 <th>Status</th>
                 <th>Total</th>
                 <th>User</th>
-                <th>Actions</th>
+                <th>Review</th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +33,8 @@
             </tr>
         </tbody>
         </table>
-        <table class="table table-stripped">
+        <h4 style="text-indent: 20pt;">Requestlines</h4>
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th>ID</th>
@@ -54,7 +57,7 @@
                         <a routerLink="/requestline/{{request.id}}/edit/{{rl.id}}">Edit</a> |
                     </span>
                     <span>
-                        <a routerLink="/requestline/delete/{{rl.id}}">Delete</a>
+                        <button (click)="delete(rl.id)" class="btn btn-link">Delete</button>
                     </span>
                 </td>
             </tr>

@@ -6,6 +6,7 @@ import { RequestService } from '../request.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SystemService } from 'src/app/core/system.service';
 import { User } from 'src/app/user/user.class';
+import { RequestLineService } from 'src/app/requestline/requestline.service';
 
 @Component({
   selector: 'app-request-lines',
@@ -35,6 +36,7 @@ export class RequestLinesComponent implements OnInit {
 
   constructor(
     private requestsvc: RequestService,
+    private requestLinesvc: RequestLineService,
     public syssvc: SystemService,
     private activatedRoute: ActivatedRoute,
     private router: Router
@@ -42,6 +44,11 @@ export class RequestLinesComponent implements OnInit {
 
   ngOnInit(): void {
     //pull request from URL
+    this.refresh();
+    this.loggedInUser = this.syssvc.getLoggedInUser();
+  }
+
+  refresh(): void {
     const routeParams = this.activatedRoute.snapshot.paramMap;
     const id = Number(routeParams.get('id'));
     this.requestsvc.get(id).subscribe(
@@ -57,7 +64,6 @@ export class RequestLinesComponent implements OnInit {
       });
       }
     );
-    this.loggedInUser = this.syssvc.getLoggedInUser();
   }
 
   review(): void {
@@ -69,5 +75,15 @@ export class RequestLinesComponent implements OnInit {
 
   create(): void {
     this.router.navigateByUrl(`/requestline/create/${this.request.id}`)
+  }
+  //delete for requestline
+  delete(rlineId: number): void {
+    console.debug("B4:", this.request);
+    this.requestLinesvc.remove(rlineId).subscribe(
+      res => { console.debug("Delete Successful!", this.request) },
+      err => { console.error(err); },
+      () =>
+      this.refresh()
+    )
   }
 }

@@ -1,21 +1,26 @@
+<app-menu></app-menu>
+<br>
+<div id="detail">
+<h3>Create New Request</h3>
+<br>
 <div>
     <table class="table table-sm">
         <tr>
             <td>Id</td>
-            <td><input [(ngModel)]="request.id" type="number" disabled></td>
+            <td><input [(ngModel)]="request.id" type="number" disabled style="width: 200px;"></td>
         </tr>
         <tr>
             <td>Description</td>
-            <td><input [(ngModel)]="request.description" type="text"></td>
+            <td><input [(ngModel)]="request.description" type="text" style="width: 200px;"></td>
         </tr>
         <tr>
             <td>Justification</td>
-            <td><input [(ngModel)]="request.justification" type="text"></td>
+            <td><input [(ngModel)]="request.justification" type="text" style="width: 200px;"></td>
         </tr>
         <tr>
             <td>DeliveryMode</td>
             <td>
-                <select [(ngModel)]="request.deliveryMode" type="text">
+                <select [(ngModel)]="request.deliveryMode" type="text" style="width: 200px;">
                     <option value="Pickup">Pickup</option>
                     <option value="Delivery">Delivery</option>
                 </select>
